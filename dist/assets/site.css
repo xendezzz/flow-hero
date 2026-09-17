@@ -81,7 +81,7 @@ html{scroll-behavior:auto;scroll-padding-top:72px}body{overflow-x:clip}
 
 /* Continuous, GPU-friendly scroll interpolation with overlapping titles. */
 .premium-voice-track{height:240vh}
-.premium-voice-scene{position:relative;isolation:isolate;transform:translateZ(0);contain:paint;backface-visibility:hidden;background:linear-gradient(to bottom,#fff 0,#fff 24px,#f6f5f8 230px) top/100% 230px no-repeat,radial-gradient(ellipse at 0 60%,#f4d6f080,transparent 50%),radial-gradient(ellipse at 100% 80%,#f8f9c580,transparent 50%),#f6f5f8}
+.premium-voice-scene{position:relative;isolation:isolate;transform:translateZ(0);contain:paint;backface-visibility:hidden;background:linear-gradient(to bottom,#fff 0,#fff 24px,#f6f5f8 230px,#f6f5f8e8 380px,#f6f5f800 640px),radial-gradient(ellipse at 0 60%,#f4d6f080,transparent 50%),radial-gradient(ellipse at 100% 80%,#f8f9c580,transparent 50%),#f6f5f8}
 .premium-voice-titles{position:relative;z-index:3;height:clamp(90px,10vw,150px);width:100%;pointer-events:none}
 .premium-voice-titles>h2{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;margin:0;will-change:transform,opacity;transform:translateZ(0)}
 .premium-voice-scene .fb-voice-paper,.premium-voice-scene .fb-recorder,.premium-voice-scene .fb-voice-progress{will-change:transform,opacity;transform:translateZ(0)}
