@@ -5,6 +5,7 @@ let hero=js.slice(a,b);
 hero=hero.replace('const t=M.useRef(null)','const t=M.useRef(null)');
 hero=hero.replace('children:"Start talking."','children:o.jsx(FlowHeadline,{})');
 hero=hero.replace('children:[o.jsxs("div",{className:"ed-hero-copy"','children:[o.jsx("div",{className:"spectrum-field","aria-hidden":"true",children:o.jsx("div",{})}),o.jsxs("div",{className:"ed-hero-copy"');
+hero=hero.replace('transition:{delay:.45,duration:.7}', 'transition:{delay:2.45,duration:.65}');
 js=js.slice(0,a)+(await readFile('src/hero.js','utf8'))+'\n'+hero+js.slice(b);
 js=js.replace('"wispr-ribbon")})','"focused-bold")})');
 js=js.replaceAll('start 144px','start 88px');
