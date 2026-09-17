@@ -5,10 +5,21 @@ function FlowHeadline(){
  M.useEffect(()=>{let live=true;fetch('/assets/hero-video.json').then(r=>r.ok?r.json():null).then(config=>{if(live&&config?.src)setSource(config.src)}).catch(()=>{});return()=>{live=false;clearTimeout(closeTimer.current)}},[]);
  M.useEffect(()=>{
    const hero=shell.current?.closest('.fb-hero');if(!hero)return;
-   const reset=()=>{hero.style.setProperty('--hero-x','0px');hero.style.setProperty('--hero-y','0px')};
-   const move=e=>{if(reduced||e.pointerType==='touch')return reset();const box=hero.getBoundingClientRect(),x=Math.max(-1,Math.min(1,(e.clientX-box.left)/box.width*2-1)),y=Math.max(-1,Math.min(1,(e.clientY-box.top)/box.height*2-1));hero.style.setProperty('--hero-x',`${x*8}px`);hero.style.setProperty('--hero-y',`${y*7}px`)};
+   const reset=()=>{hero.style.setProperty('--hero-x','0px');hero.style.setProperty('--hero-y','0px');hero.style.setProperty('--dither-radius','0px')};
+   const move=e=>{if(reduced||e.pointerType==='touch')return reset();const box=hero.getBoundingClientRect(),px=e.clientX-box.left,py=e.clientY-box.top,x=Math.max(-1,Math.min(1,px/box.width*2-1)),y=Math.max(-1,Math.min(1,py/box.height*2-1));hero.style.setProperty('--hero-x',`${x*8}px`);hero.style.setProperty('--hero-y',`${y*7}px`);hero.style.setProperty('--dither-x',`${px}px`);hero.style.setProperty('--dither-y',`${py}px`);hero.style.setProperty('--dither-radius','118px')};
    hero.addEventListener('pointermove',move);hero.addEventListener('pointerleave',reset);
    return()=>{hero.removeEventListener('pointermove',move);hero.removeEventListener('pointerleave',reset)};
+ },[reduced]);
+ M.useEffect(()=>{
+   const sections=[...document.querySelectorAll('.fb-free,.fb-closing')];
+   const cleanups=sections.map(section=>{
+     const field=document.createElement('video');field.className='section-dither-field';field.src='/assets/hero-gradient-loop.mp4?v=figma-palette';field.autoplay=true;field.muted=true;field.loop=true;field.playsInline=true;field.setAttribute('aria-hidden','true');section.prepend(field);
+     const reset=()=>section.style.setProperty('--dither-radius','0px');
+     const move=e=>{if(reduced||e.pointerType==='touch')return reset();const box=section.getBoundingClientRect();section.style.setProperty('--dither-x',`${e.clientX-box.left}px`);section.style.setProperty('--dither-y',`${e.clientY-box.top}px`);section.style.setProperty('--dither-radius','126px')};
+     section.addEventListener('pointermove',move);section.addEventListener('pointerleave',reset);
+     return()=>{section.removeEventListener('pointermove',move);section.removeEventListener('pointerleave',reset);field.remove()};
+   });
+   return()=>cleanups.forEach(cleanup=>cleanup());
  },[reduced]);
  const start=async(expanded=open)=>{
    const el=video.current;if(!el||!source)return;const request=++attempt.current;
@@ -24,7 +35,7 @@ function FlowHeadline(){
  const resetTilt=()=>{const el=shell.current;if(el){el.style.setProperty('--video-rx','0deg');el.style.setProperty('--video-ry','0deg');el.style.setProperty('--video-x','0px');el.style.setProperty('--video-y','0px')}};
  const collapse=()=>{clearTimeout(closeTimer.current);setOpen(false);resetTilt()};
  const leave=()=>{resetTilt();closeTimer.current=setTimeout(()=>{if(!shell.current?.contains(document.activeElement))setOpen(false)},160)};
- const tilt=e=>{if(reduced||!open||e.pointerType==='touch')return;const el=shell.current,box=el.getBoundingClientRect();const x=Math.max(-.5,Math.min(.5,(e.clientX-box.left)/box.width-.5)),y=Math.max(-.5,Math.min(.5,(e.clientY-box.top)/box.height-.5));el.style.setProperty('--video-rx',`${-y*3.6}deg`);el.style.setProperty('--video-ry',`${x*3.6}deg`);el.style.setProperty('--video-x',`${x*6}px`);el.style.setProperty('--video-y',`${y*6}px`)};
+ const tilt=e=>{if(reduced||!open||e.pointerType==='touch')return;const el=shell.current,box=el.getBoundingClientRect();const x=Math.max(-.5,Math.min(.5,(e.clientX-box.left)/box.width-.5)),y=Math.max(-.5,Math.min(.5,(e.clientY-box.top)/box.height-.5));el.style.setProperty('--video-rx',`${-y*2.4}deg`);el.style.setProperty('--video-ry',`${x*2.4}deg`);el.style.setProperty('--video-x',`${x*4}px`);el.style.setProperty('--video-y',`${y*4}px`)};
  const sound=async e=>{e.stopPropagation();const el=video.current;if(!el)return;const next=!el.muted;preference.current=next;el.muted=next;setMuted(next);try{await el.play();setBlocked(false)}catch{el.muted=true;setMuted(true);setBlocked(true)}};
  const stamp=n=>`${Math.floor(n/60)}:${String(Math.floor(n%60)).padStart(2,'0')}`;
  const soundIcon=o.jsxs('svg',{viewBox:'0 0 24 24',width:20,height:20,fill:'none',stroke:'currentColor',strokeWidth:1.8,'aria-hidden':true,children:[o.jsx('path',{d:'M11 5 6 9H3v6h3l5 4V5Z'}),o.jsx('path',{d:muted?'m16 9 5 6m0-6-5 6':'M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14'})]});
