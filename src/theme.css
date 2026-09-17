@@ -46,3 +46,104 @@
 .fb-hero .fb-free-word{padding-bottom:.13em}
 .fb-hero .fb-free-word>svg{bottom:0;height:.1em}
 @media(max-width:767px){.fb-hero h1{gap:.14em;letter-spacing:-.055em}.fb-hero .flow-headline{gap:.15em}}
+
+/* Shared Runable navigation component from the design system. */
+.runable-header{height:72px;background:#fff;border:0;box-shadow:none;z-index:80}
+.runable-nav{height:72px;max-width:none;padding:12px 120px;display:grid;grid-template-columns:234px 1fr 234px;gap:18px;align-items:center}
+.runable-mark{width:27px;height:25px;display:grid;place-items:center}
+.runable-links{display:flex;justify-content:center;align-items:center;gap:8px}
+.runable-links .nav-pill,.runable-links .header-dropdown summary,.runable-header .login-link{min-height:40px;padding:8px 16px;border:2px solid #fff;border-radius:8px;background:linear-gradient(#fff,#fdfdfd);box-shadow:0 1px 2px #00000008,0 4px 10px #0000000a;font-weight:500;line-height:20px;transition:transform .22s ease,box-shadow .22s ease,background .22s ease}
+.runable-links .nav-pill:hover,.runable-links .header-dropdown summary:hover,.runable-header .login-link:hover{background:#fff;transform:translateY(-1px);box-shadow:0 2px 4px #0000000a,0 7px 16px #00000010}
+.runable-header .header-actions{justify-self:end;gap:8px;white-space:nowrap}
+.runable-header .header-actions .signup-button{min-height:48px;padding-inline:24px;border-radius:8px}
+.runable-menu{display:none}
+.runable-mobile-nav{top:72px}
+
+/* Figma hero: exact artwork rendered as a seamless video layer. */
+.spectrum-field{inset:335px -3% -80px;mask-image:linear-gradient(transparent 0%,#000 41%,#000 100%);opacity:0;animation:field-arrive 1.4s ease .75s forwards}
+.spectrum-field>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center bottom;filter:none;transform:scale(1.02);will-change:transform}
+.spectrum-field:after{background:radial-gradient(ellipse 48% 59% at 50% 19%,#fff 45%,#ffffffea 68%,transparent 100%)}
+.fb-hero{min-height:1066px;padding:128px 24px 190px}
+.fb-hero h1{font-size:clamp(92px,7.55vw,145px);line-height:.96;gap:.105em;letter-spacing:-.045em}
+.fb-hero .flow-headline{gap:.27em}
+.flow-film{height:.968em}
+.fb-key-float{top:150px;right:7.8%}
+.fb-keycap{width:120px;height:120px}
+.fb-hero-fragment-left{top:485px;left:3.2%}
+.fb-hero-fragment-right{top:660px;right:2.3%}
+.fb-hero-fragment-right{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:auto;min-height:58px;bottom:auto;padding:14px 20px;line-height:1;box-sizing:border-box}
+.fb-hero-fragment-right>svg{flex:0 0 auto}
+.fb-hero .ed-hero-details{margin-top:32px;position:relative;z-index:4}
+.ed-hero-cue{z-index:4}
+
+/* Continuous, GPU-friendly scroll interpolation with overlapping titles. */
+.premium-voice-track{height:255vh}
+.premium-voice-scene{transform:translateZ(0);contain:paint;backface-visibility:hidden}
+.premium-voice-titles{position:relative;z-index:3;height:clamp(90px,10vw,150px);width:100%;pointer-events:none}
+.premium-voice-titles>h2{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;margin:0;will-change:transform,opacity;transform:translateZ(0)}
+.premium-voice-scene .fb-voice-paper,.premium-voice-scene .fb-recorder,.premium-voice-scene .fb-voice-progress{will-change:transform,opacity;transform:translateZ(0)}
+.fb-apps{padding-bottom:clamp(90px,10vw,170px)}
+
+/* The lower fn key now enters with the same spring/scale language as the hero key. */
+.fb-setup-keys>kbd{will-change:transform,opacity;transition:box-shadow .28s ease,transform .28s ease}
+.fb-setup-keys:hover>kbd{transform:translateY(-3px) rotate(-3deg)!important}
+
+@media(max-width:1180px){
+ .runable-nav{padding-inline:32px;grid-template-columns:1fr auto}
+ .runable-links{display:none}
+ .runable-menu{display:grid}
+ .runable-header .header-actions{display:flex}
+ .runable-mark{justify-self:start}
+ .fb-hero{min-height:900px;padding-top:118px}
+ .fb-hero h1{font-size:clamp(68px,9.4vw,106px)}
+ .fb-key-float{top:86px;right:6%}
+ .fb-keycap{width:86px;height:88px}
+ .fb-hero-fragment-left{top:455px}
+ .fb-hero-fragment-right{top:570px}
+ .spectrum-field{inset:275px -18% -70px}
+}
+
+@media(max-width:767px){
+ .runable-nav{padding:12px 16px;grid-template-columns:1fr auto;height:72px}
+ .runable-header .header-actions{gap:7px}
+ .runable-header .header-actions .signup-button{display:flex;min-height:42px;padding:8px 13px;font-size:13px}
+ .runable-header .login-link{display:none}
+ .runable-menu{width:40px;height:40px;margin:0}
+ .fb-hero{min-height:760px;padding:106px 14px 122px;overflow:hidden}
+ .fb-hero h1{font-size:clamp(35px,10.6vw,72px);line-height:1.01;gap:.18em;letter-spacing:-.047em}
+ .fb-hero .flow-headline{gap:.15em}
+ .flow-film{height:.95em}
+ .fb-key-float{top:42px;right:13%}
+ .fb-keycap{width:58px;height:62px}
+ .fb-hero-fragment-left{top:36px;left:5%;transform:scale(.86)}
+ .fb-hero .ed-hero-details{margin-top:34px}
+ .fb-hero .ed-hero-details>p{font-size:15px;line-height:1.45}
+ .fb-hero .ed-hero-details .signup-button{display:inline-flex;min-height:48px;margin-top:18px}
+ .spectrum-field{inset:248px -66% -30px;mask-image:linear-gradient(transparent,#000 43%)}
+ .premium-voice-track{height:220vh}
+ .fb-voice-sticky{top:72px;height:calc(100svh - 72px);min-height:620px}
+ .premium-voice-titles{height:82px}
+ .premium-voice-titles>h2{font-size:clamp(40px,12vw,62px)}
+ .fb-apps{padding-bottom:84px}
+}
+
+@media(max-width:420px){
+ .runable-header .header-actions .signup-button svg:last-of-type{display:none}
+ .fb-hero{min-height:700px;padding-top:98px;padding-bottom:105px}
+ .fb-hero h1{font-size:clamp(33px,10.3vw,44px)}
+ .fb-key-float{top:38px;right:11%}
+ .fb-hero-fragment-left{display:none}
+ .fb-hero .ed-hero-details{margin-top:28px}
+ .ed-hero-cue{bottom:34px}
+ .spectrum-field{inset:225px -90% -20px}
+}
+
+@media(max-height:720px) and (min-width:768px){
+ .fb-hero{min-height:760px;padding-top:88px;padding-bottom:120px}
+ .fb-hero h1{font-size:clamp(65px,8.4vw,104px)}
+ .fb-key-float{top:62px}
+ .fb-hero .ed-hero-details{margin-top:22px}
+ .ed-hero-cue{bottom:34px}
+}
+
+@media(prefers-reduced-motion:reduce){.spectrum-field>video{display:none}.premium-voice-scene *{transition-duration:.01ms!important}}
