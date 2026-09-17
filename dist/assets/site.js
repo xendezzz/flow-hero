@@ -61,7 +61,7 @@ function HT(){const[t,s]=M.useState(!1);return o.jsxs("header",{className:"wr-he
   'Plot twist: that email just wrote itself.',
   'Your keyboard misses you. Flow doesn’t.',
   'Big idea. Zero typing. Excellent choice.',
-  'Careful—this might become your new superpower.'
+  'Careful. This might become your new superpower.'
  ];
  const [active,setActive]=M.useState(false),[visible,setVisible]=M.useState(false),[text,setText]=M.useState('');
  const control=M.useRef(null),typing=M.useRef(0),dismiss=M.useRef(0),last=M.useRef(-1);
