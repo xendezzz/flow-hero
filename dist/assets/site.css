@@ -19,3 +19,16 @@
 .bayer-background{position:absolute;left:0;top:0;display:block;pointer-events:none;image-rendering:pixelated;max-width:none;filter:none!important;animation:none!important}
 .spectrum-field.has-bayer-background{mask-image:none}.spectrum-field.has-bayer-background>div,.spectrum-field.has-bayer-background:after{display:none}
 .fb-voice-scene.has-bayer-background{background:none}.fb-voice-scene>.bayer-background{z-index:-3}
+/* The player grows around the thumbnail's center, without reflowing the headline. */
+.flow-film{overflow:visible;z-index:5}.flow-film.is-open{z-index:20}
+.flow-player{position:absolute;left:50%;top:50%;display:block;width:100%;height:100%;overflow:hidden;border-radius:100px;background:#deddd4;box-shadow:0 0 0 #0000;transform:translate(-50%,-50%) perspective(1000px) translate(var(--video-x,0px),var(--video-y,0px)) rotateX(var(--video-rx,0deg)) rotateY(var(--video-ry,0deg));transition:width .65s cubic-bezier(.22,1,.36,1),height .65s cubic-bezier(.22,1,.36,1),border-radius .65s cubic-bezier(.22,1,.36,1),box-shadow .5s,transform .25s ease-out;will-change:width,height,transform;isolation:isolate}
+.flow-player.is-open{width:min(720px,90vw);height:min(405px,50.625vw);border-radius:24px;box-shadow:0 12px 36px #00000026,0 2px 6px #00000012}
+.flow-player .flow-film-image{object-fit:cover}.flow-film:hover .flow-film-image{transform:none}
+.flow-hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .3s}.flow-player.is-open .flow-hero-video{opacity:1}
+.flow-video-trigger{position:absolute;inset:0;z-index:2;border:0;background:transparent;cursor:pointer;border-radius:inherit}.flow-video-trigger:focus-visible{outline:3px solid #b96ed0;outline-offset:-5px}
+.flow-video-controls{position:absolute;left:0;right:0;bottom:0;height:56px;z-index:3;display:flex;justify-content:flex-end;align-items:center;gap:10px;padding:8px 12px;background:linear-gradient(transparent,#0008);font:12px Satoshi,Arial,sans-serif;color:#fff;letter-spacing:normal}
+.flow-sound-toggle,.flow-video-close{display:grid;place-items:center;flex:none;cursor:pointer;color:#fff;background:#0007;backdrop-filter:blur(8px);border:1px solid #ffffff30;border-radius:50%;width:36px;height:36px;transition:background .2s,transform .2s}.flow-sound-toggle:hover,.flow-video-close:hover{background:#000a;transform:scale(1.06)}.flow-sound-hint{order:-1;letter-spacing:normal}.flow-video-close{position:absolute;right:12px;top:12px;z-index:4;font:24px Arial,sans-serif}
+@media(max-width:767px){.flow-player.is-open{border-radius:16px}.flow-video-controls{height:48px}.flow-sound-toggle,.flow-video-close{width:32px;height:32px}}
+.motion-study[data-reduced=true] .flow-player{transition:none;transform:translate(-50%,-50%)}
+@media(prefers-reduced-motion:reduce){.flow-player{transition:none;transform:translate(-50%,-50%)}}
+.fb-hero .hero-line-mask:nth-child(2){position:relative;z-index:10}
