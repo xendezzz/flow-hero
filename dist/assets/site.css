@@ -156,7 +156,7 @@
 .fb-hero .ed-hero-copy,.fb-key-float,.fb-hero-fragment,.fb-hero .ed-hero-cue{translate:var(--hero-x) var(--hero-y);transition:translate .22s cubic-bezier(.22,1,.36,1)}
 .fb-key-float{translate:calc(0px - var(--hero-x)) calc(0px - var(--hero-y))}
 .spectrum-field>video{translate:calc(0px - var(--hero-x)) calc(0px - var(--hero-y));transition:translate .35s ease-out}
-.flow-film-color.flow-thermal-asset{position:absolute;inset:-50%;width:200%;height:200%;max-width:none;object-fit:cover;opacity:.8;animation:none}
+.flow-film-color.flow-thermal-asset{position:absolute;inset:-50%;width:200%;height:200%;max-width:none;object-fit:cover;opacity:.8;animation:none;pointer-events:none}
 .flow-figma-play{position:absolute;z-index:1;left:50%;top:50%;width:min(25%,36px);height:auto;translate:-50% -50%;pointer-events:none;opacity:0;animation:film-photo .35s ease 1.55s forwards}
 .flow-player.is-open{width:min(175%,90vw);height:min(175%,50.625vw);border-radius:20px}
 .flow-player.is-open .flow-figma-play{opacity:0;display:none}

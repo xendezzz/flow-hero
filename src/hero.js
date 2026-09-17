@@ -32,7 +32,7 @@ function FlowHeadline(){
    o.jsx('span',{children:'Start'}),
    o.jsx('span',{className:'flow-film'+(open?' is-open':''),onPointerEnter:expand,onPointerLeave:leave,onFocus:expand,onBlur:e=>{if(!e.currentTarget.contains(e.relatedTarget))collapse()},onKeyDown:e=>{if(e.key==='Escape'){e.preventDefault();e.currentTarget.querySelector('.flow-video-trigger')?.focus();collapse()}},children:
      o.jsxs('span',{ref:shell,className:'flow-player'+(open?' is-open':''),onPointerMove:tilt,children:[
-       o.jsx('img',{src:'/assets/figma-flow/thermal-pill.gif',alt:'',className:'flow-film-color flow-thermal-asset','aria-hidden':true}),
+       o.jsx('video',{src:'/assets/figma-flow/thermal-pill.mp4',className:'flow-film-color flow-thermal-asset',autoPlay:true,muted:true,loop:true,playsInline:true,preload:'auto','aria-hidden':true}),
        o.jsx('img',{src:'/assets/figma-flow/video-poster.png',alt:'Flow video preview',className:'flow-film-image'}),
        o.jsx('img',{src:'/assets/figma-flow/play-video.svg',alt:'',className:'flow-figma-play','aria-hidden':true}),
        source&&o.jsx('video',{ref:video,src:source,poster:'/assets/figma-flow/video-poster.png',className:'flow-hero-video',playsInline:true,autoPlay:true,muted:true,loop:true,preload:'auto',onTimeUpdate:e=>setTime(e.currentTarget.currentTime),onLoadedMetadata:e=>setDuration(e.currentTarget.duration),onPlay:()=>setPaused(false),onPause:()=>setPaused(true),'aria-label':'Flow introduction video'}),
