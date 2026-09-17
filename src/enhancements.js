@@ -61,5 +61,20 @@ function Iv({progress:t,reduced:s}){
 
 function fA(){
  const ref=M.useRef(null),{scrollYProgress}=Fn({target:ref,offset:["start 88px","end end"]});
+ M.useEffect(()=>{
+  const node=ref.current;if(!node)return;
+  let timer=0,settling=false,release=0;
+  const settle=()=>{
+   if(settling)return;
+   const progress=scrollYProgress.get();if(progress<=.025||progress>=.975)return;
+   const stops=[0,.49,.84,1],target=stops.reduce((best,value)=>Math.abs(value-progress)<Math.abs(best-progress)?value:best,stops[0]);
+   const top=node.getBoundingClientRect().top+window.scrollY,start=top-88,range=Math.max(1,node.offsetHeight-window.innerHeight+88);
+   settling=true;window.scrollTo({top:start+target*range,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+   clearTimeout(release);release=window.setTimeout(()=>{settling=false},720);
+  };
+  const queue=()=>{clearTimeout(timer);timer=window.setTimeout(settle,140)};
+  window.addEventListener('scroll',queue,{passive:true});
+  return()=>{window.removeEventListener('scroll',queue);clearTimeout(timer);clearTimeout(release)};
+ },[scrollYProgress]);
  return o.jsx("div",{className:"fb-voice-track premium-voice-track",ref,children:o.jsx("div",{className:"fb-voice-sticky",children:o.jsx(Iv,{progress:scrollYProgress,reduced:!1})})})
 }

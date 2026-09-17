@@ -1,3 +1,29 @@
+function FnHoldCue(){
+ const samples=[
+  'Hello, how are you? Welcome—try Flow.',
+  'I’ll send the project update this afternoon.',
+  'Could we move tomorrow’s meeting to three?',
+  'Thanks for the thoughtful feedback. I’ll take a look.',
+  'The first draft is ready whenever you are.'
+ ];
+ const [active,setActive]=M.useState(false),[visible,setVisible]=M.useState(false),[text,setText]=M.useState('');
+ const control=M.useRef(null),typing=M.useRef(0),dismiss=M.useRef(0),last=M.useRef(-1);
+ const clear=()=>{clearInterval(typing.current);clearTimeout(dismiss.current)};
+ const press=()=>{
+  if(active)return;clear();setActive(true);setVisible(true);setText('');
+  const hero=control.current?.closest('.fb-hero');if(hero)hero.dataset.fnActive='true';
+  let next=Math.floor(Math.random()*samples.length);if(next===last.current)next=(next+1)%samples.length;last.current=next;
+  const message=samples[next];let index=0;
+  typing.current=window.setInterval(()=>{index+=1;setText(message.slice(0,index));if(index>=message.length){clearInterval(typing.current);dismiss.current=window.setTimeout(()=>setVisible(false),4800)}},48);
+ };
+ const release=()=>{setActive(false);const hero=control.current?.closest('.fb-hero');if(hero)delete hero.dataset.fnActive};
+ M.useEffect(()=>()=>{clear();const hero=control.current?.closest('.fb-hero');if(hero)delete hero.dataset.fnActive},[]);
+ return o.jsxs('div',{className:'fn-hold-experience',children:[
+  visible&&o.jsxs('div',{className:'fn-typing-bubble',role:'status','aria-live':'polite',children:[o.jsx('span',{className:'fn-bubble-dot','aria-hidden':true}),o.jsx('span',{children:text}),o.jsx('i',{'aria-hidden':true})]}),
+  o.jsxs('button',{ref:control,type:'button',className:'fn-hold-trigger'+(active?' is-active':''),'aria-label':'Press and hold the function key to try Flow',onPointerDown:e=>{if(e.pointerType!=='touch')e.currentTarget.setPointerCapture?.(e.pointerId);press()},onPointerUp:release,onPointerCancel:release,onPointerLeave:()=>{if(active)release()},onKeyDown:e=>{if((e.key===' '||e.key==='Enter')&&!e.repeat){e.preventDefault();press()}},onKeyUp:e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();release()}},children:[o.jsx('kbd',{children:'fn'}),o.jsx('span',{children:'Click function key'})]})
+ ]})
+}
+
 function FlowHeadline(){
  const {reduced}=Re();
  const [open,setOpen]=M.useState(false),[muted,setMuted]=M.useState(false),[blocked,setBlocked]=M.useState(false),[source,setSource]=M.useState(''),[time,setTime]=M.useState(0),[duration,setDuration]=M.useState(0),[paused,setPaused]=M.useState(false);

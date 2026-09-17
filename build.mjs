@@ -15,6 +15,7 @@ hero=hero.replace('o.jsxs(K.div,{className:"fb-hero-fragment fb-hero-fragment-le
 hero=hero.replace('transition:{delay:.9},"aria-hidden":"true",children:','transition:{delay:.9},"aria-label":"Hear how Flow cleans up speech",children:');
 hero=hero.replace('o.jsxs(K.div,{className:"fb-hero-fragment fb-hero-fragment-right"','o.jsxs(K.a,{href:"#dictation-demo",className:"fb-hero-fragment fb-hero-fragment-right"');
 hero=hero.replace('transition:{delay:1},"aria-hidden":"true",children:','transition:{delay:1},"aria-label":"See Flow turn speech into ready text",children:');
+hero=hero.replace('o.jsxs("a",{className:"ed-hero-cue",href:"#dictation-demo",children:[o.jsx("span",{children:"SEE IT FLOW"}),o.jsx($s,{size:18})]})','o.jsx(FnHoldCue,{})');
 hero=hero.replace('children:[o.jsxs("div",{className:"ed-hero-copy"','children:[o.jsx("div",{className:"spectrum-field","aria-hidden":"true",children:o.jsx("video",{src:"/assets/hero-gradient-loop.mp4?v=supplied-dither",autoPlay:!0,muted:!0,loop:!0,playsInline:!0,preload:"auto"})}),o.jsxs("div",{className:"ed-hero-copy"');
 hero=hero.replace('transition:{delay:.45,duration:.7}', 'transition:{delay:2.45,duration:.65}');
 js=js.slice(0,a)+(await readFile('src/hero.js','utf8'))+'\n'+hero+js.slice(b);
