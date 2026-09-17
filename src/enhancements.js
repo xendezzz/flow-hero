@@ -1,4 +1,4 @@
-function BT(){
+function RunableNavbar(){
  const [open,setOpen]=M.useState(false);
  const sections=["Capabilities","Solutions","Resources"];
  return o.jsxs("header",{className:"site-header runable-header",children:[
@@ -29,6 +29,8 @@ function BT(){
   ]})
  ]})
 }
+
+function BT(){return o.jsx(RunableNavbar,{})}
 
 function Iv({progress:t,reduced:s}){
  const [stage,setStage]=M.useState(t.get()>=.72?2:t.get()>=.3?1:0);

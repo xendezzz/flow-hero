@@ -3,6 +3,13 @@ function FlowHeadline(){
  const [open,setOpen]=M.useState(false),[muted,setMuted]=M.useState(false),[blocked,setBlocked]=M.useState(false),[source,setSource]=M.useState(''),[time,setTime]=M.useState(0),[duration,setDuration]=M.useState(0),[paused,setPaused]=M.useState(false);
  const video=M.useRef(null),shell=M.useRef(null),closeTimer=M.useRef(null),preference=M.useRef(false),attempt=M.useRef(0);
  M.useEffect(()=>{let live=true;fetch('/assets/hero-video.json').then(r=>r.ok?r.json():null).then(config=>{if(live&&config?.src)setSource(config.src)}).catch(()=>{});return()=>{live=false;clearTimeout(closeTimer.current)}},[]);
+ M.useEffect(()=>{
+   const hero=shell.current?.closest('.fb-hero');if(!hero)return;
+   const reset=()=>{hero.style.setProperty('--hero-x','0px');hero.style.setProperty('--hero-y','0px')};
+   const move=e=>{if(reduced||e.pointerType==='touch')return reset();const box=hero.getBoundingClientRect(),x=Math.max(-1,Math.min(1,(e.clientX-box.left)/box.width*2-1)),y=Math.max(-1,Math.min(1,(e.clientY-box.top)/box.height*2-1));hero.style.setProperty('--hero-x',`${x*8}px`);hero.style.setProperty('--hero-y',`${y*7}px`)};
+   hero.addEventListener('pointermove',move);hero.addEventListener('pointerleave',reset);
+   return()=>{hero.removeEventListener('pointermove',move);hero.removeEventListener('pointerleave',reset)};
+ },[reduced]);
  const start=async(expanded=open)=>{
    const el=video.current;if(!el||!source)return;const request=++attempt.current;
    el.muted=expanded?preference.current:true;setMuted(el.muted);
@@ -17,7 +24,7 @@ function FlowHeadline(){
  const resetTilt=()=>{const el=shell.current;if(el){el.style.setProperty('--video-rx','0deg');el.style.setProperty('--video-ry','0deg');el.style.setProperty('--video-x','0px');el.style.setProperty('--video-y','0px')}};
  const collapse=()=>{clearTimeout(closeTimer.current);setOpen(false);resetTilt()};
  const leave=()=>{resetTilt();closeTimer.current=setTimeout(()=>{if(!shell.current?.contains(document.activeElement))setOpen(false)},160)};
- const tilt=e=>{if(reduced||!open||e.pointerType==='touch')return;const el=shell.current,box=el.getBoundingClientRect();const x=Math.max(-.5,Math.min(.5,(e.clientX-box.left)/box.width-.5)),y=Math.max(-.5,Math.min(.5,(e.clientY-box.top)/box.height-.5));el.style.setProperty('--video-rx',`${-y*2.4}deg`);el.style.setProperty('--video-ry',`${x*2.4}deg`);el.style.setProperty('--video-x',`${x*4}px`);el.style.setProperty('--video-y',`${y*4}px`)};
+ const tilt=e=>{if(reduced||!open||e.pointerType==='touch')return;const el=shell.current,box=el.getBoundingClientRect();const x=Math.max(-.5,Math.min(.5,(e.clientX-box.left)/box.width-.5)),y=Math.max(-.5,Math.min(.5,(e.clientY-box.top)/box.height-.5));el.style.setProperty('--video-rx',`${-y*3.6}deg`);el.style.setProperty('--video-ry',`${x*3.6}deg`);el.style.setProperty('--video-x',`${x*6}px`);el.style.setProperty('--video-y',`${y*6}px`)};
  const sound=async e=>{e.stopPropagation();const el=video.current;if(!el)return;const next=!el.muted;preference.current=next;el.muted=next;setMuted(next);try{await el.play();setBlocked(false)}catch{el.muted=true;setMuted(true);setBlocked(true)}};
  const stamp=n=>`${Math.floor(n/60)}:${String(Math.floor(n%60)).padStart(2,'0')}`;
  const soundIcon=o.jsxs('svg',{viewBox:'0 0 24 24',width:20,height:20,fill:'none',stroke:'currentColor',strokeWidth:1.8,'aria-hidden':true,children:[o.jsx('path',{d:'M11 5 6 9H3v6h3l5 4V5Z'}),o.jsx('path',{d:muted?'m16 9 5 6m0-6-5 6':'M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14'})]});
@@ -25,9 +32,10 @@ function FlowHeadline(){
    o.jsx('span',{children:'Start'}),
    o.jsx('span',{className:'flow-film'+(open?' is-open':''),onPointerEnter:expand,onPointerLeave:leave,onFocus:expand,onBlur:e=>{if(!e.currentTarget.contains(e.relatedTarget))collapse()},onKeyDown:e=>{if(e.key==='Escape'){e.preventDefault();e.currentTarget.querySelector('.flow-video-trigger')?.focus();collapse()}},children:
      o.jsxs('span',{ref:shell,className:'flow-player'+(open?' is-open':''),onPointerMove:tilt,children:[
-       o.jsx('span',{className:'flow-film-color','aria-hidden':true}),
-       o.jsx('img',{src:'/assets/flow-poster.jpg',alt:'Flow video preview',className:'flow-film-image'}),
-       source&&o.jsx('video',{ref:video,src:source,poster:'/assets/flow-poster.jpg',className:'flow-hero-video',playsInline:true,autoPlay:true,muted:true,loop:true,preload:'auto',onTimeUpdate:e=>setTime(e.currentTarget.currentTime),onLoadedMetadata:e=>setDuration(e.currentTarget.duration),onPlay:()=>setPaused(false),onPause:()=>setPaused(true),'aria-label':'Flow introduction video'}),
+       o.jsx('img',{src:'/assets/figma-flow/thermal-pill.gif',alt:'',className:'flow-film-color flow-thermal-asset','aria-hidden':true}),
+       o.jsx('img',{src:'/assets/figma-flow/video-poster.png',alt:'Flow video preview',className:'flow-film-image'}),
+       o.jsx('img',{src:'/assets/figma-flow/play-video.svg',alt:'',className:'flow-figma-play','aria-hidden':true}),
+       source&&o.jsx('video',{ref:video,src:source,poster:'/assets/figma-flow/video-poster.png',className:'flow-hero-video',playsInline:true,autoPlay:true,muted:true,loop:true,preload:'auto',onTimeUpdate:e=>setTime(e.currentTarget.currentTime),onLoadedMetadata:e=>setDuration(e.currentTarget.duration),onPlay:()=>setPaused(false),onPause:()=>setPaused(true),'aria-label':'Flow introduction video'}),
        o.jsx('button',{type:'button',className:'flow-video-trigger','aria-label':open?'Play Flow introduction':'Expand Flow video preview','aria-expanded':open,onClick:()=>{expand();start(true)}}),
        open&&source&&o.jsxs('span',{className:'flow-video-controls',children:[
          o.jsx('button',{type:'button',className:'flow-play-toggle','aria-label':paused?'Play video':'Pause video',onClick:e=>{e.stopPropagation();if(video.current?.paused)start(true);else video.current?.pause()},children:paused?'▶':'Ⅱ'}),
