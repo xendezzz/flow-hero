@@ -1,17 +1,17 @@
 function FlowHeadline(){
  const {reduced}=Re();
  const [open,setOpen]=M.useState(false),[muted,setMuted]=M.useState(false),[blocked,setBlocked]=M.useState(false),[source,setSource]=M.useState('');
- const video=M.useRef(null),shell=M.useRef(null),closeTimer=M.useRef(null),preference=M.useRef(false);
+ const video=M.useRef(null),shell=M.useRef(null),closeTimer=M.useRef(null),preference=M.useRef(false),attempt=M.useRef(0);
  M.useEffect(()=>{let live=true;fetch('/assets/hero-video.json').then(r=>r.ok?r.json():null).then(config=>{if(live&&config?.src)setSource(config.src)}).catch(()=>{});return()=>{live=false;clearTimeout(closeTimer.current)}},[]);
  const start=async()=>{
-   const el=video.current;if(!el||!source)return;
+   const el=video.current;if(!el||!source)return;const request=++attempt.current;
    el.muted=preference.current;setMuted(el.muted);
-   try{await el.play();setBlocked(false)}catch{
-     if(!el.isConnected)return;el.muted=true;setMuted(true);setBlocked(true);
+   try{await el.play();if(request===attempt.current)setBlocked(false)}catch{
+     if(!el.isConnected||request!==attempt.current)return;el.muted=true;setMuted(true);setBlocked(true);
      try{await el.play()}catch{/* A click on the player can retry playback. */}
    }
  };
- M.useEffect(()=>{if(open)start();else video.current?.pause()},[open,source]);
+ M.useEffect(()=>{if(open)start();else{attempt.current++;video.current?.pause()}return()=>{attempt.current++;video.current?.pause()}},[open,source]);
  const expand=()=>{clearTimeout(closeTimer.current);setOpen(true)};
  const resetTilt=()=>{const el=shell.current;if(el){el.style.setProperty('--video-rx','0deg');el.style.setProperty('--video-ry','0deg');el.style.setProperty('--video-x','0px');el.style.setProperty('--video-y','0px')}};
  const collapse=()=>{clearTimeout(closeTimer.current);setOpen(false);resetTilt()};
@@ -24,8 +24,8 @@ function FlowHeadline(){
    o.jsx('span',{className:'flow-film'+(open?' is-open':''),onPointerEnter:expand,onPointerLeave:leave,onFocus:expand,onBlur:e=>{if(!e.currentTarget.contains(e.relatedTarget))collapse()},onKeyDown:e=>{if(e.key==='Escape'){e.preventDefault();e.currentTarget.querySelector('.flow-video-trigger')?.focus();collapse()}},children:
      o.jsxs('span',{ref:shell,className:'flow-player'+(open?' is-open':''),onPointerMove:tilt,children:[
        o.jsx('span',{className:'flow-film-color','aria-hidden':true}),
-       o.jsx('img',{src:'/assets/poster.png',alt:'Flow video preview',className:'flow-film-image'}),
-       source&&o.jsx('video',{ref:video,src:source,poster:'/assets/poster.png',className:'flow-hero-video',playsInline:true,loop:true,preload:'metadata','aria-label':'Flow introduction video'}),
+       o.jsx('img',{src:'/assets/flow-poster.jpg',alt:'Flow video preview',className:'flow-film-image'}),
+       source&&o.jsx('video',{ref:video,src:source,poster:'/assets/flow-poster.jpg',className:'flow-hero-video',playsInline:true,loop:true,preload:'metadata','aria-label':'Flow introduction video'}),
        o.jsx('button',{type:'button',className:'flow-video-trigger','aria-label':open?'Play Flow introduction':'Expand Flow video preview','aria-expanded':open,onClick:()=>{expand();start()}}),
        open&&source&&o.jsxs('span',{className:'flow-video-controls',children:[
          o.jsx('button',{type:'button',className:'flow-sound-toggle','aria-label':muted?'Turn sound on':'Turn sound off','aria-pressed':muted,onClick:sound,children:soundIcon}),

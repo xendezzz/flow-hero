@@ -6,6 +6,6 @@ The complete existing Flow page, restyled with the white, charcoal and spectral 
 
 Run `npm run build` then `npm start` to preview at http://localhost:4173.
 
-The hero plays once on entry: text opens, the color circle stretches into a pill, and the reference thumbnail fades in. Replay and reduced-motion controls remain available. The thumbnail is an image from the supplied screen recording, not a playable video asset.
+The hero plays once on entry: text opens, the color circle stretches into a pill, and the reference thumbnail fades in. Replay and reduced-motion controls remain available. The hero uses the supplied Flow video, encoded as a fast-start H.264/AAC MP4. Hover expands the player and attempts playback with audio; browsers that block audible autoplay fall back to muted playback with a sound toggle.
 
 The original scroll-driven dictation story, mobile timed demonstration, app-card animations, key interactions, FAQ, navigation and external CTA destinations are preserved.
