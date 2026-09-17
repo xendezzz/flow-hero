@@ -64,7 +64,7 @@
 /* Figma hero: exact artwork rendered as a seamless video layer. */
 .spectrum-field{inset:335px -3% -80px;mask-image:linear-gradient(transparent 0%,#000 41%,#000 100%);opacity:0;animation:field-arrive 1.4s ease .75s forwards}
 .spectrum-field>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center bottom;filter:none;transform:scale(1.02);will-change:transform}
-.spectrum-field:after{background:radial-gradient(ellipse 48% 59% at 50% 19%,#fff 45%,#ffffffea 68%,transparent 100%)}
+.spectrum-field:after{background:linear-gradient(to bottom,#fff 0 30%,#fffffff0 38%,#ffffff9c 48%,#ffffff32 57%,transparent 65%)}
 .fb-hero{min-height:1066px;padding:128px 24px 190px}
 .fb-hero h1{font-size:clamp(92px,7.55vw,145px);line-height:.96;gap:.105em;letter-spacing:-.045em}
 .fb-hero .flow-headline{gap:.27em}
@@ -157,7 +157,7 @@
 .fb-hero .ed-hero-copy{translate:none!important}
 .fb-key-float{translate:calc(0px - var(--hero-x)) calc(0px - var(--hero-y))}
 .spectrum-field>video{translate:calc(0px - var(--hero-x)) calc(0px - var(--hero-y));transition:translate .35s ease-out;filter:none}
-.fb-hero h1>.hero-line-mask:nth-child(2){margin-block:2px}
+.fb-hero h1>.hero-line-mask:nth-child(2){margin-block:8px}
 .flow-film{translate:var(--video-box-x) var(--video-box-y);transition:translate .28s cubic-bezier(.22,1,.36,1)}
 .flow-film-color.flow-thermal-asset{position:absolute;inset:-50%;width:200%;height:200%;max-width:none;object-fit:cover;opacity:.8;animation:none;pointer-events:none}
 .flow-figma-play{position:absolute;z-index:1;left:50%;top:50%;width:min(25%,36px);height:auto;translate:-50% -50%;pointer-events:none;opacity:0;animation:film-photo .35s ease 1.55s forwards}
@@ -174,14 +174,17 @@
 .fb-hero-fragment-right{top:565px;right:2.3%}
 .ed-hero-cue{bottom:18px}
 
-/* The Figma dither field is reused behind these sections. */
+/* The dither video remains at full color and exposure in every section. */
 .fb-free,.fb-closing{isolation:isolate;position:relative;overflow:hidden}
-.section-dither-field{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;pointer-events:none;filter:none;opacity:.58}
-.fb-free .section-dither-field{opacity:.78;mix-blend-mode:normal;filter:none}
-.fb-free:after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:#1515158a}
+.section-dither-field{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;pointer-events:none;filter:none;opacity:1}
+.fb-free{background:#000}
+.fb-free .section-dither-field{opacity:1;mix-blend-mode:normal;filter:none}
+.fb-free:before{display:none}
+.fb-free:after{content:"";position:absolute;inset:clamp(10px,1.2vw,18px);z-index:1;pointer-events:none;background:#111;border-radius:clamp(22px,3vw,42px);box-shadow:0 24px 70px #00000038}
 .editorial-type .fb-closing{background:#fff}
-.fb-closing .section-dither-field{opacity:.72}
-.fb-free>div,.fb-closing>*:not(.section-dither-field){position:relative;z-index:1}
+.fb-closing .section-dither-field{opacity:1}
+.fb-closing:after{content:"";position:absolute;z-index:1;left:17%;right:17%;top:17%;bottom:15%;pointer-events:none;background:#fff;border-radius:30%;filter:blur(54px)}
+.fb-free>*:not(.section-dither-field),.fb-closing>*:not(.section-dither-field){position:relative;z-index:2}
 
 @media(max-width:1180px){
  .fb-hero{min-height:780px;padding-top:92px;padding-bottom:70px}
@@ -202,6 +205,9 @@
  .fb-hero-fragment-right{display:inline-flex;top:auto;right:-16px;bottom:48px;min-height:42px;padding:10px 13px}
  .ed-hero-cue{bottom:20px}
  .flow-player.is-open{border-radius:12px}
+ .fb-hero h1>.hero-line-mask:nth-child(2){margin-block:5px}
+ .fb-free:after{inset:8px;border-radius:24px}
+ .fb-closing:after{left:9%;right:9%;top:20%;bottom:18%;filter:blur(34px)}
 }
 
 @media(max-width:420px){
