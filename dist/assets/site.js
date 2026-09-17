@@ -88,8 +88,10 @@ function HT(){const[t,s]=M.useState(!1);return o.jsxs("header",{className:"wr-he
  const leave=()=>{resetTilt();closeTimer.current=setTimeout(()=>{if(!shell.current?.contains(document.activeElement))setOpen(false)},160)};
  const tilt=e=>{if(reduced||!open||e.pointerType==='touch')return;const el=shell.current,box=el.getBoundingClientRect();const x=Math.max(-.5,Math.min(.5,(e.clientX-box.left)/box.width-.5)),y=Math.max(-.5,Math.min(.5,(e.clientY-box.top)/box.height-.5));el.style.setProperty('--video-rx',`${-y*2.4}deg`);el.style.setProperty('--video-ry',`${x*2.4}deg`);el.style.setProperty('--video-x',`${x*4}px`);el.style.setProperty('--video-y',`${y*4}px`)};
  const sound=async e=>{e.stopPropagation();const el=video.current;if(!el)return;const next=!el.muted;preference.current=next;el.muted=next;setMuted(next);try{await el.play();setBlocked(false)}catch{el.muted=true;setMuted(true);setBlocked(true)}};
+ const fullscreen=async e=>{e.stopPropagation();try{if(document.fullscreenElement)await document.exitFullscreen();else if(shell.current?.requestFullscreen)await shell.current.requestFullscreen();else video.current?.webkitEnterFullscreen?.()}catch{/* Keep playback available if fullscreen is blocked. */}};
  const stamp=n=>`${Math.floor(n/60)}:${String(Math.floor(n%60)).padStart(2,'0')}`;
  const soundIcon=o.jsxs('svg',{viewBox:'0 0 24 24',width:20,height:20,fill:'none',stroke:'currentColor',strokeWidth:1.8,'aria-hidden':true,children:[o.jsx('path',{d:'M11 5 6 9H3v6h3l5 4V5Z'}),o.jsx('path',{d:muted?'m16 9 5 6m0-6-5 6':'M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14'})]});
+ const fullscreenIcon=o.jsxs('svg',{viewBox:'0 0 24 24',width:19,height:19,fill:'none',stroke:'currentColor',strokeWidth:1.8,strokeLinecap:'round',strokeLinejoin:'round','aria-hidden':true,children:[o.jsx('path',{d:'M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5'})]});
  return o.jsxs('span',{className:'flow-headline'+(reduced?' still':''),children:[
    o.jsx('span',{children:'Start'}),
    o.jsx('span',{className:'flow-film'+(open?' is-open':''),onPointerEnter:expand,onPointerLeave:leave,onFocus:expand,onBlur:e=>{if(!e.currentTarget.contains(e.relatedTarget))collapse()},onKeyDown:e=>{if(e.key==='Escape'){e.preventDefault();e.currentTarget.querySelector('.flow-video-trigger')?.focus();collapse()}},children:
@@ -104,6 +106,7 @@ function HT(){const[t,s]=M.useState(!1);return o.jsxs("header",{className:"wr-he
          o.jsx('span',{className:'flow-video-time',children:stamp(time)}),
          o.jsx('input',{type:'range',className:'flow-video-progress',min:0,max:duration||1,step:.1,value:time,'aria-label':'Video playback position','aria-valuetext':`${stamp(time)} of ${stamp(duration)}`,onChange:e=>{const value=Number(e.target.value);if(video.current)video.current.currentTime=value;setTime(value)}}),
          o.jsx('span',{className:'flow-video-time',children:stamp(duration)}),
+         o.jsx('button',{type:'button',className:'flow-fullscreen-toggle','aria-label':'View video fullscreen',onClick:fullscreen,children:fullscreenIcon}),
          o.jsx('button',{type:'button',className:'flow-sound-toggle','aria-label':muted?'Turn sound on':'Turn sound off','aria-pressed':muted,onClick:sound,children:soundIcon}),
          blocked&&o.jsx('span',{className:'flow-sound-hint',children:'Tap to turn sound on'})]}),
        open&&o.jsx('button',{type:'button',className:'flow-video-close','aria-label':'Close video preview',onClick:collapse,children:'×'})
