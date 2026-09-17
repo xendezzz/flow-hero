@@ -57,7 +57,7 @@ function HT(){const[t,s]=M.useState(!1);return o.jsxs("header",{className:"wr-he
  M.useEffect(()=>{
    const hero=shell.current?.closest('.fb-hero');if(!hero)return;
    const reset=()=>{hero.style.setProperty('--hero-x','0px');hero.style.setProperty('--hero-y','0px');hero.style.setProperty('--video-box-x','0px');hero.style.setProperty('--video-box-y','0px')};
-   const move=e=>{if(reduced||e.pointerType==='touch')return reset();const box=hero.getBoundingClientRect(),px=e.clientX-box.left,py=e.clientY-box.top,x=Math.max(-1,Math.min(1,px/box.width*2-1)),y=Math.max(-1,Math.min(1,py/box.height*2-1));hero.style.setProperty('--hero-x',`${x*8}px`);hero.style.setProperty('--hero-y',`${y*7}px`);hero.style.setProperty('--video-box-x',`${x*5}px`);hero.style.setProperty('--video-box-y',`${y*4}px`)};
+   const move=e=>{if(reduced||e.pointerType==='touch')return reset();const box=hero.getBoundingClientRect(),px=e.clientX-box.left,py=e.clientY-box.top,x=Math.max(-1,Math.min(1,px/box.width*2-1)),y=Math.max(-1,Math.min(1,py/box.height*2-1));hero.style.setProperty('--hero-x',`${x*5.5}px`);hero.style.setProperty('--hero-y',`${y*5}px`);hero.style.setProperty('--video-box-x',`${x*3}px`);hero.style.setProperty('--video-box-y',`${y*2.5}px`)};
    hero.addEventListener('pointermove',move);hero.addEventListener('pointerleave',reset);
    return()=>{hero.removeEventListener('pointermove',move);hero.removeEventListener('pointerleave',reset)};
  },[reduced]);
@@ -83,7 +83,7 @@ function HT(){const[t,s]=M.useState(!1);return o.jsxs("header",{className:"wr-he
  const resetTilt=()=>{const el=shell.current;if(el){el.style.setProperty('--video-rx','0deg');el.style.setProperty('--video-ry','0deg');el.style.setProperty('--video-x','0px');el.style.setProperty('--video-y','0px')}};
  const collapse=()=>{clearTimeout(closeTimer.current);setOpen(false);resetTilt()};
  const leave=()=>{resetTilt();closeTimer.current=setTimeout(()=>{if(!shell.current?.contains(document.activeElement))setOpen(false)},160)};
- const tilt=e=>{if(reduced||!open||e.pointerType==='touch')return;const el=shell.current,box=el.getBoundingClientRect();const x=Math.max(-.5,Math.min(.5,(e.clientX-box.left)/box.width-.5)),y=Math.max(-.5,Math.min(.5,(e.clientY-box.top)/box.height-.5));el.style.setProperty('--video-rx',`${-y*2.4}deg`);el.style.setProperty('--video-ry',`${x*2.4}deg`);el.style.setProperty('--video-x',`${x*4}px`);el.style.setProperty('--video-y',`${y*4}px`)};
+ const tilt=e=>{if(reduced||!open||e.pointerType==='touch')return;const el=shell.current,box=el.getBoundingClientRect();const x=Math.max(-.5,Math.min(.5,(e.clientX-box.left)/box.width-.5)),y=Math.max(-.5,Math.min(.5,(e.clientY-box.top)/box.height-.5));el.style.setProperty('--video-rx',`${-y*1.6}deg`);el.style.setProperty('--video-ry',`${x*1.6}deg`);el.style.setProperty('--video-x',`${x*2.5}px`);el.style.setProperty('--video-y',`${y*2.5}px`)};
  const sound=async e=>{e.stopPropagation();const el=video.current;if(!el)return;const next=!el.muted;preference.current=next;el.muted=next;setMuted(next);try{await el.play();setBlocked(false)}catch{el.muted=true;setMuted(true);setBlocked(true)}};
  const fullscreen=async e=>{e.stopPropagation();try{if(document.fullscreenElement)await document.exitFullscreen();else if(shell.current?.requestFullscreen)await shell.current.requestFullscreen();else video.current?.webkitEnterFullscreen?.()}catch{/* Keep playback available if fullscreen is blocked. */}};
  const stamp=n=>`${Math.floor(n/60)}:${String(Math.floor(n%60)).padStart(2,'0')}`;
