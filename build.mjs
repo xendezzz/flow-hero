@@ -11,6 +11,7 @@ const a=js.indexOf('function cA(){'),b=js.indexOf('function uA(',a);
 let hero=js.slice(a,b);
 hero=hero.replace('const t=M.useRef(null)','const t=M.useRef(null)');
 hero=hero.replace('children:"Start talking."','children:o.jsx(FlowHeadline,{})');
+hero=hero.replace('href:"#dictation-demo",className:"fb-keycap","aria-label":"See Flow turn speech into text"','href:"#dictation-demo",className:"fb-keycap","aria-label":"Try Flow with the function key",onClick:e=>{e.preventDefault();window.dispatchEvent(new CustomEvent("flow:fn-trigger"))}');
 hero=hero.replace('o.jsxs(K.div,{className:"fb-hero-fragment fb-hero-fragment-left"','o.jsxs(K.a,{href:"#dictation-demo",className:"fb-hero-fragment fb-hero-fragment-left"');
 hero=hero.replace('transition:{delay:.9},"aria-hidden":"true",children:','transition:{delay:.9},"aria-label":"Hear how Flow cleans up speech",children:');
 hero=hero.replace('o.jsxs(K.div,{className:"fb-hero-fragment fb-hero-fragment-right"','o.jsxs(K.a,{href:"#dictation-demo",className:"fb-hero-fragment fb-hero-fragment-right"');

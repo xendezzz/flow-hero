@@ -180,8 +180,8 @@ html{scroll-behavior:auto;scroll-padding-top:72px}body{overflow-x:clip}
 .fn-hold-trigger:hover{translate:-50% -2px;color:#000}.fn-hold-trigger:active,.fn-hold-trigger.is-active{translate:-50% 2px;color:#000}
 .fn-hold-trigger kbd{display:grid;place-items:center;width:32px;height:32px;border-radius:8px;background:#252525;color:#fff;box-shadow:0 3px #111;font:500 13px/1 Satoshi,Arial,sans-serif;transition:translate .2s ease,box-shadow .2s ease}
 .fn-hold-trigger.is-active kbd{translate:0 2px;box-shadow:0 1px #111}
-.fn-typing-bubble{position:absolute;top:252px;right:calc(8.2% - 28px);display:flex;align-items:flex-start;gap:2px;width:min(330px,34vw);min-height:58px;padding:14px 17px;border:1px solid #e5e5e5;border-radius:15px;background:#fffffff2;backdrop-filter:blur(18px);box-shadow:0 18px 48px #00000018;color:#252525;font:500 14px/1.45 Satoshi,Arial,sans-serif;animation:fn-bubble-in .35s cubic-bezier(.22,1,.36,1) both;pointer-events:none}
-.fn-typing-bubble:after{content:"";position:absolute;right:44px;top:-7px;width:14px;height:14px;background:#fff;border-top:1px solid #e5e5e5;border-left:1px solid #e5e5e5;rotate:45deg}.fn-typing-bubble i{display:inline-block;width:1px;height:1.1em;margin-left:1px;background:#252525;animation:fn-caret .75s steps(1) infinite}
+.fn-typing-bubble{position:absolute;top:82px;right:calc(8.2% - 22px);display:flex;justify-content:flex-end;align-items:flex-start;gap:2px;width:min(330px,38vw);min-height:0;padding:0;border:0;background:transparent;box-shadow:none;color:#252525;text-align:right;font:600 14px/1.45 Satoshi,Arial,sans-serif;animation:fn-bubble-in .35s cubic-bezier(.22,1,.36,1) both;pointer-events:none}
+.fn-typing-bubble:after{display:none}.fn-typing-bubble i{display:inline-block;width:1px;height:1.1em;margin-left:1px;background:#252525;animation:fn-caret .75s steps(1) infinite}
 .fb-keycap{transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s cubic-bezier(.22,1,.36,1),background .3s ease}
 .fb-hero[data-fn-active=true] .fb-keycap{transform:translateY(7px) scale(.96);box-shadow:0 2px #161616,0 7px 16px #0003;background:#303030}
 @keyframes fn-bubble-in{from{opacity:0;transform:translate(12px,10px) scale(.96)}to{opacity:1;transform:none}}@keyframes fn-caret{50%{opacity:0}}
@@ -202,7 +202,7 @@ html{scroll-behavior:auto;scroll-padding-top:72px}body{overflow-x:clip}
  .fb-hero{min-height:780px;padding-top:92px;padding-bottom:70px}
  .fb-key-float{top:92px;right:5%}
  .fb-keycap{width:66px;height:70px;padding:10px;border-radius:12px}
- .fn-typing-bubble{top:178px;right:calc(5% - 22px)}
+ .fn-typing-bubble{top:43px;right:calc(5% - 16px)}
  .fb-keycap>svg{width:19px;height:19px}.fb-keycap>span{font-size:17px}
  .fb-hero-fragment-left{top:410px}
  .fb-hero-fragment-right{top:520px}
@@ -219,7 +219,7 @@ html{scroll-behavior:auto;scroll-padding-top:72px}body{overflow-x:clip}
  .ed-hero-cue{bottom:20px}
  .flow-player.is-open{border-radius:12px}
  .fn-hold-trigger{min-height:40px;font-size:10px}.fn-hold-trigger kbd{width:29px;height:29px;font-size:12px}
- .fn-typing-bubble{top:474px;left:auto;right:18px;width:min(300px,calc(100vw - 36px));min-height:54px;font-size:13px}.fn-typing-bubble:after{right:18%;top:-7px;bottom:auto;border:0;border-top:1px solid #e5e5e5;border-left:1px solid #e5e5e5}
+ .fn-typing-bubble{top:354px;left:auto;right:18px;width:min(280px,calc(100vw - 36px));min-height:0;font-size:13px}
  .fb-hero h1>.hero-line-mask:nth-child(2){margin-block:5px}
  .fb-free:after{inset:8px;border-radius:24px}
  .fb-closing:after{left:0;right:0;top:5%;bottom:4%;filter:blur(50px)}
