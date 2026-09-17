@@ -10,6 +10,7 @@ js=js.slice(0,ivStart)+voiceEnhancements+'\n'+js.slice(ivEnd);
 const a=js.indexOf('function cA(){'),b=js.indexOf('function uA(',a);
 let hero=js.slice(a,b);
 hero=hero.replace('const t=M.useRef(null)','const t=M.useRef(null)');
+hero=hero.replace('className:"ed-hero-copy",children:[o.jsxs("h1"','className:"ed-hero-copy",children:[o.jsxs(K.div,{className:"flow-brand-chip",initial:s?!1:{opacity:0,y:8},animate:{opacity:1,y:0},transition:{duration:.5},children:[o.jsx("img",{src:"/assets/logo.svg",alt:""}),o.jsx("span",{children:"Flow by Runable"})]}),o.jsxs("h1"');
 hero=hero.replace('children:"Start talking."','children:o.jsx(FlowHeadline,{})');
 hero=hero.replace('o.jsxs(K.div,{className:"fb-hero-fragment fb-hero-fragment-left"','o.jsxs(K.a,{href:"#dictation-demo",className:"fb-hero-fragment fb-hero-fragment-left"');
 hero=hero.replace('transition:{delay:.9},"aria-hidden":"true",children:','transition:{delay:.9},"aria-label":"Hear how Flow cleans up speech",children:');
@@ -23,6 +24,7 @@ js=js.replace('function $v(){return o.jsxs("section",{className:"fb-apps",id:"yo
 js=js.replace('initial:t?!1:{y:-35,rotate:-12},whileInView:{y:0,rotate:-7},viewport:{once:!0,amount:.5},transition:{type:"spring",stiffness:125,damping:13}','initial:t?!1:{opacity:0,scale:.65,y:-38,rotate:-12},whileInView:{opacity:1,scale:1,y:0,rotate:-7},viewport:{once:!0,amount:.5},transition:{type:"spring",stiffness:120,damping:14,delay:.12}');
 js=js.replace('"wispr-ribbon")})','"focused-bold")})');
 js=js.replaceAll('start 144px','start 88px');
+js=js.replace('children:["Compare plans",o.jsx(Ft,{size:15})]','children:["View plans",o.jsx(Ft,{size:15})]');
 await writeFile('dist/assets/site.js',js);
 await writeFile('dist/assets/site.css',(await readFile('src/original.css','utf8'))+'\n'+await readFile('src/theme.css','utf8'));
 await writeFile('dist/assets/hero-video.json',await readFile('src/hero-video.json','utf8'));

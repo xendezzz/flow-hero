@@ -1,10 +1,11 @@
 function FnHoldCue(){
  const samples=[
-  'Hello, how are you? Welcome—try Flow.',
-  'I’ll send the project update this afternoon.',
-  'Could we move tomorrow’s meeting to three?',
-  'Thanks for the thoughtful feedback. I’ll take a look.',
-  'The first draft is ready whenever you are.'
+  'You’re looking beautiful today. Yes, you.',
+  'Looks like you need to work faster. Flow can help.',
+  'Plot twist: that email just wrote itself.',
+  'Your keyboard misses you. Flow doesn’t.',
+  'Big idea. Zero typing. Excellent choice.',
+  'Careful—this might become your new superpower.'
  ];
  const [active,setActive]=M.useState(false),[visible,setVisible]=M.useState(false),[text,setText]=M.useState('');
  const control=M.useRef(null),typing=M.useRef(0),dismiss=M.useRef(0),last=M.useRef(-1);
@@ -19,8 +20,8 @@ function FnHoldCue(){
  const release=()=>{setActive(false);const hero=control.current?.closest('.fb-hero');if(hero)delete hero.dataset.fnActive};
  M.useEffect(()=>()=>{clear();const hero=control.current?.closest('.fb-hero');if(hero)delete hero.dataset.fnActive},[]);
  return o.jsxs('div',{className:'fn-hold-experience',children:[
-  visible&&o.jsxs('div',{className:'fn-typing-bubble',role:'status','aria-live':'polite',children:[o.jsx('span',{className:'fn-bubble-dot','aria-hidden':true}),o.jsx('span',{children:text}),o.jsx('i',{'aria-hidden':true})]}),
-  o.jsxs('button',{ref:control,type:'button',className:'fn-hold-trigger'+(active?' is-active':''),'aria-label':'Press and hold the function key to try Flow',onPointerDown:e=>{if(e.pointerType!=='touch')e.currentTarget.setPointerCapture?.(e.pointerId);press()},onPointerUp:release,onPointerCancel:release,onPointerLeave:()=>{if(active)release()},onKeyDown:e=>{if((e.key===' '||e.key==='Enter')&&!e.repeat){e.preventDefault();press()}},onKeyUp:e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();release()}},children:[o.jsx('kbd',{children:'fn'}),o.jsx('span',{children:'Click function key'})]})
+  visible&&o.jsxs('div',{className:'fn-typing-bubble',role:'status','aria-live':'polite',children:[o.jsx('span',{children:text}),o.jsx('i',{'aria-hidden':true})]}),
+  o.jsxs('button',{ref:control,type:'button',className:'fn-hold-trigger'+(active?' is-active':''),'aria-label':'Press and hold the function key to try Flow',onPointerDown:e=>{if(e.pointerType!=='touch')e.currentTarget.setPointerCapture?.(e.pointerId);press()},onPointerUp:release,onPointerCancel:release,onPointerLeave:()=>{if(active)release()},onKeyDown:e=>{if((e.key===' '||e.key==='Enter')&&!e.repeat){e.preventDefault();press()}},onKeyUp:e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();release()}},children:[o.jsx('kbd',{children:'fn'}),o.jsx('span',{children:'Hold function key'})]})
  ]})
 }
 
