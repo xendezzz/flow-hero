@@ -75,10 +75,7 @@ function HT(){const[t,s]=M.useState(!1);return o.jsxs("header",{className:"wr-he
  };
  const release=()=>{setActive(false);const hero=control.current?.closest('.fb-hero');if(hero)delete hero.dataset.fnActive};
  M.useEffect(()=>{const trigger=()=>{press();tap.current=window.setTimeout(release,180)};window.addEventListener('flow:fn-trigger',trigger);return()=>{window.removeEventListener('flow:fn-trigger',trigger);clear();const hero=control.current?.closest('.fb-hero');if(hero)delete hero.dataset.fnActive}},[]);
- return o.jsxs('div',{className:'fn-hold-experience',children:[
-  visible&&o.jsxs('div',{className:'fn-typing-bubble',role:'status','aria-live':'polite',children:[o.jsx('span',{children:text}),o.jsx('i',{'aria-hidden':true})]}),
-  o.jsxs('button',{ref:control,type:'button',className:'fn-hold-trigger'+(active?' is-active':''),'aria-label':'Press and hold the function key to try Flow',onPointerDown:e=>{if(e.pointerType!=='touch')e.currentTarget.setPointerCapture?.(e.pointerId);press()},onPointerUp:release,onPointerCancel:release,onPointerLeave:()=>{if(active)release()},onKeyDown:e=>{if((e.key===' '||e.key==='Enter')&&!e.repeat){e.preventDefault();press()}},onKeyUp:e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();release()}},children:[o.jsx('kbd',{children:'fn'}),o.jsx('span',{children:'Hold function key'})]})
- ]})
+ return o.jsx('div',{ref:control,className:'fn-hold-experience',children:visible&&o.jsxs('div',{className:'fn-typing-bubble',role:'status','aria-live':'polite',children:[o.jsx('span',{children:text}),o.jsx('i',{'aria-hidden':true})]})})
 }
 
 function FlowHeadline(){

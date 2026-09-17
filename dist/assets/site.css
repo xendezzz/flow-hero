@@ -176,10 +176,6 @@ html{scroll-behavior:auto;scroll-padding-top:72px}body{overflow-x:clip}
 .fb-hero-fragment-right{top:565px;right:2.3%}
 .ed-hero-cue{bottom:18px}
 .fn-hold-experience{position:absolute;inset:0;z-index:7;pointer-events:none}
-.fn-hold-trigger{position:absolute;left:50%;top:min(calc(100svh - 130px),calc(100% - 64px));bottom:auto;translate:-50% 0;display:flex;align-items:center;gap:9px;min-height:44px;padding:5px;border:0;background:transparent;color:#202020;box-shadow:none;pointer-events:auto;cursor:pointer;font:600 11px/1 Satoshi,Arial,sans-serif;letter-spacing:.03em;transition:translate .25s ease,color .25s ease}
-.fn-hold-trigger:hover{translate:-50% -2px;color:#000}.fn-hold-trigger:active,.fn-hold-trigger.is-active{translate:-50% 2px;color:#000}
-.fn-hold-trigger kbd{display:grid;place-items:center;width:32px;height:32px;border-radius:8px;background:#252525;color:#fff;box-shadow:0 3px #111;font:500 13px/1 Satoshi,Arial,sans-serif;transition:translate .2s ease,box-shadow .2s ease}
-.fn-hold-trigger.is-active kbd{translate:0 2px;box-shadow:0 1px #111}
 .fn-typing-bubble{position:absolute;top:82px;right:calc(8.2% - 22px);display:flex;justify-content:flex-end;align-items:flex-start;gap:2px;width:min(330px,38vw);min-height:0;padding:0;border:0;background:transparent;box-shadow:none;color:#252525;text-align:right;font:600 14px/1.45 Satoshi,Arial,sans-serif;animation:fn-bubble-in .35s cubic-bezier(.22,1,.36,1) both;pointer-events:none}
 .fn-typing-bubble:after{display:none}.fn-typing-bubble i{display:inline-block;width:1px;height:1.1em;margin-left:1px;background:#252525;animation:fn-caret .75s steps(1) infinite}
 .fb-keycap{transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s cubic-bezier(.22,1,.36,1),background .3s ease}
@@ -218,7 +214,6 @@ html{scroll-behavior:auto;scroll-padding-top:72px}body{overflow-x:clip}
  .fb-hero-fragment-right{display:inline-flex;top:auto;right:-16px;bottom:48px;min-height:42px;padding:10px 13px}
  .ed-hero-cue{bottom:20px}
  .flow-player.is-open{border-radius:12px}
- .fn-hold-trigger{min-height:40px;font-size:10px}.fn-hold-trigger kbd{width:29px;height:29px;font-size:12px}
  .fn-typing-bubble{top:354px;left:auto;right:18px;width:min(280px,calc(100vw - 36px));min-height:0;font-size:13px}
  .fb-hero h1>.hero-line-mask:nth-child(2){margin-block:5px}
  .fb-free:after{inset:8px;border-radius:24px}
