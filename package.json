@@ -1,0 +1,1 @@
+{"name":"flow-full-site","private":true,"type":"module","scripts":{"build":"node build.mjs","start":"python3 -m http.server 4173 --directory dist"}}
