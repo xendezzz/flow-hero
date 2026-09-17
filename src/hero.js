@@ -5,21 +5,18 @@ function FlowHeadline(){
  M.useEffect(()=>{let live=true;fetch('/assets/hero-video.json').then(r=>r.ok?r.json():null).then(config=>{if(live&&config?.src)setSource(config.src)}).catch(()=>{});return()=>{live=false;clearTimeout(closeTimer.current)}},[]);
  M.useEffect(()=>{
    const hero=shell.current?.closest('.fb-hero');if(!hero)return;
-   const reset=()=>{hero.style.setProperty('--hero-x','0px');hero.style.setProperty('--hero-y','0px');hero.style.setProperty('--dither-radius','0px')};
-   const move=e=>{if(reduced||e.pointerType==='touch')return reset();const box=hero.getBoundingClientRect(),px=e.clientX-box.left,py=e.clientY-box.top,x=Math.max(-1,Math.min(1,px/box.width*2-1)),y=Math.max(-1,Math.min(1,py/box.height*2-1));hero.style.setProperty('--hero-x',`${x*8}px`);hero.style.setProperty('--hero-y',`${y*7}px`);hero.style.setProperty('--dither-x',`${px}px`);hero.style.setProperty('--dither-y',`${py}px`);hero.style.setProperty('--dither-radius','118px')};
+   const reset=()=>{hero.style.setProperty('--hero-x','0px');hero.style.setProperty('--hero-y','0px');hero.style.setProperty('--video-box-x','0px');hero.style.setProperty('--video-box-y','0px')};
+   const move=e=>{if(reduced||e.pointerType==='touch')return reset();const box=hero.getBoundingClientRect(),px=e.clientX-box.left,py=e.clientY-box.top,x=Math.max(-1,Math.min(1,px/box.width*2-1)),y=Math.max(-1,Math.min(1,py/box.height*2-1));hero.style.setProperty('--hero-x',`${x*8}px`);hero.style.setProperty('--hero-y',`${y*7}px`);hero.style.setProperty('--video-box-x',`${x*5}px`);hero.style.setProperty('--video-box-y',`${y*4}px`)};
    hero.addEventListener('pointermove',move);hero.addEventListener('pointerleave',reset);
    return()=>{hero.removeEventListener('pointermove',move);hero.removeEventListener('pointerleave',reset)};
  },[reduced]);
  M.useEffect(()=>{
    const sections=[...document.querySelectorAll('.fb-free,.fb-closing')];
-   const cleanups=sections.map(section=>{
-     const field=document.createElement('video');field.className='section-dither-field';field.src='/assets/hero-gradient-loop.mp4?v=figma-palette';field.autoplay=true;field.muted=true;field.loop=true;field.playsInline=true;field.setAttribute('aria-hidden','true');section.prepend(field);
-     const reset=()=>section.style.setProperty('--dither-radius','0px');
-     const move=e=>{if(reduced||e.pointerType==='touch')return reset();const box=section.getBoundingClientRect();section.style.setProperty('--dither-x',`${e.clientX-box.left}px`);section.style.setProperty('--dither-y',`${e.clientY-box.top}px`);section.style.setProperty('--dither-radius','126px')};
-     section.addEventListener('pointermove',move);section.addEventListener('pointerleave',reset);
-     return()=>{section.removeEventListener('pointermove',move);section.removeEventListener('pointerleave',reset);field.remove()};
+   const fields=sections.map(section=>{
+     const field=document.createElement('video');field.className='section-dither-field';field.src='/assets/hero-gradient-loop.mp4?v=supplied-dither';field.autoplay=true;field.muted=true;field.loop=true;field.playsInline=true;field.setAttribute('aria-hidden','true');section.prepend(field);
+     return field;
    });
-   return()=>cleanups.forEach(cleanup=>cleanup());
+   return()=>fields.forEach(field=>field.remove());
  },[reduced]);
  const start=async(expanded=open)=>{
    const el=video.current;if(!el||!source)return;const request=++attempt.current;

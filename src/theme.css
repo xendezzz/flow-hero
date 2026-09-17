@@ -150,11 +150,13 @@
 
 /* Final Figma component pass: exact exported thermal/video assets and tighter hero composition. */
 .runable-header{position:sticky}
-.fb-hero{--hero-x:0px;--hero-y:0px;--dither-x:50%;--dither-y:65%;--dither-radius:0px;min-height:830px;padding:98px 24px 76px}
+.fb-hero{--hero-x:0px;--hero-y:0px;--video-box-x:0px;--video-box-y:0px;min-height:830px;padding:98px 24px 76px}
 .fb-key-float,.fb-hero-fragment,.fb-hero .ed-hero-cue{translate:var(--hero-x) var(--hero-y);transition:translate .22s cubic-bezier(.22,1,.36,1)}
 .fb-hero .ed-hero-copy{translate:none!important}
 .fb-key-float{translate:calc(0px - var(--hero-x)) calc(0px - var(--hero-y))}
-.spectrum-field>video{translate:calc(0px - var(--hero-x)) calc(0px - var(--hero-y));transition:translate .35s ease-out;filter:saturate(1.08) contrast(1.02);-webkit-mask-image:radial-gradient(circle var(--dither-radius) at var(--dither-x) var(--dither-y),transparent 0 54%,#0004 72%,#000 100%);mask-image:radial-gradient(circle var(--dither-radius) at var(--dither-x) var(--dither-y),transparent 0 54%,#0004 72%,#000 100%)}
+.spectrum-field>video{translate:calc(0px - var(--hero-x)) calc(0px - var(--hero-y));transition:translate .35s ease-out;filter:none}
+.fb-hero h1>.hero-line-mask:nth-child(2){margin-block:2px}
+.flow-film{translate:var(--video-box-x) var(--video-box-y);transition:translate .28s cubic-bezier(.22,1,.36,1)}
 .flow-film-color.flow-thermal-asset{position:absolute;inset:-50%;width:200%;height:200%;max-width:none;object-fit:cover;opacity:.8;animation:none;pointer-events:none}
 .flow-figma-play{position:absolute;z-index:1;left:50%;top:50%;width:min(25%,36px);height:auto;translate:-50% -50%;pointer-events:none;opacity:0;animation:film-photo .35s ease 1.55s forwards}
 .flow-player.is-open{width:min(720px,90vw);height:min(405px,50.625vw);border-radius:24px}
@@ -170,11 +172,10 @@
 .fb-hero-fragment-right{top:565px;right:2.3%}
 .ed-hero-cue{bottom:18px}
 
-/* The Figma dither field is reused behind these sections. The radial mask softly
-   clears particles beneath the pointer without moving any foreground content. */
-.fb-free,.fb-closing{--dither-x:50%;--dither-y:50%;--dither-radius:0px;isolation:isolate;position:relative;overflow:hidden}
-.section-dither-field{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;pointer-events:none;filter:saturate(1.08) contrast(1.02);opacity:.58;-webkit-mask-image:radial-gradient(circle var(--dither-radius) at var(--dither-x) var(--dither-y),transparent 0 55%,#0004 73%,#000 100%);mask-image:radial-gradient(circle var(--dither-radius) at var(--dither-x) var(--dither-y),transparent 0 55%,#0004 73%,#000 100%)}
-.fb-free .section-dither-field{opacity:.86;mix-blend-mode:normal;filter:saturate(1.72) contrast(1.06)}
+/* The Figma dither field is reused behind these sections. */
+.fb-free,.fb-closing{isolation:isolate;position:relative;overflow:hidden}
+.section-dither-field{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;pointer-events:none;filter:none;opacity:.58}
+.fb-free .section-dither-field{opacity:.78;mix-blend-mode:normal;filter:none}
 .fb-free:after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:#1515158a}
 .editorial-type .fb-closing{background:#fff}
 .fb-closing .section-dither-field{opacity:.72}
@@ -209,4 +210,4 @@
  .spectrum-field{inset:205px -90% -15px}
 }
 
-@media(prefers-reduced-motion:reduce){.fb-key-float,.fb-hero-fragment,.fb-hero .ed-hero-cue,.spectrum-field>video{translate:none!important}.flow-figma-play{animation:none;opacity:1}.section-dither-field{display:none}}
+@media(prefers-reduced-motion:reduce){.fb-key-float,.fb-hero-fragment,.fb-hero .ed-hero-cue,.spectrum-field>video,.flow-film{translate:none!important}.flow-figma-play{animation:none;opacity:1}.section-dither-field{display:none}}
