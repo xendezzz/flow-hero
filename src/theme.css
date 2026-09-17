@@ -78,9 +78,8 @@ html{scroll-behavior:auto;scroll-padding-top:72px}body{overflow-x:clip}
 .ed-hero-cue{z-index:4}
 
 /* Continuous, GPU-friendly scroll interpolation with overlapping titles. */
-.premium-voice-track{height:255vh}
+.premium-voice-track{height:240vh}
 .premium-voice-scene{position:relative;isolation:isolate;transform:translateZ(0);contain:paint;backface-visibility:hidden;background:linear-gradient(to bottom,#fff 0,#fff 24px,#f6f5f8 230px) top/100% 230px no-repeat,radial-gradient(ellipse at 0 60%,#f4d6f080,transparent 50%),radial-gradient(ellipse at 100% 80%,#f8f9c580,transparent 50%),#f6f5f8}
-.premium-voice-scene:before{content:"";position:absolute;z-index:-1;left:-4%;right:-4%;top:0;height:230px;pointer-events:none;background:linear-gradient(96deg,#ff8b76 0%,#f7d94c 23%,#ed76d8 49%,#f5e65c 72%,#ca71ed 100%);filter:blur(22px);opacity:.7;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 32%,#000 52%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,#000 32%,#000 52%,transparent 100%)}
 .premium-voice-titles{position:relative;z-index:3;height:clamp(90px,10vw,150px);width:100%;pointer-events:none}
 .premium-voice-titles>h2{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;margin:0;will-change:transform,opacity;transform:translateZ(0)}
 .premium-voice-scene .fb-voice-paper,.premium-voice-scene .fb-recorder,.premium-voice-scene .fb-voice-progress{will-change:transform,opacity;transform:translateZ(0)}
@@ -122,7 +121,7 @@ html{scroll-behavior:auto;scroll-padding-top:72px}body{overflow-x:clip}
  .fb-hero .ed-hero-details>p{font-size:15px;line-height:1.45}
  .fb-hero .ed-hero-details .signup-button{display:inline-flex;min-height:48px;margin-top:18px}
  .spectrum-field{inset:248px -66% -30px;mask-image:linear-gradient(transparent,#000 43%)}
- .premium-voice-track{height:220vh}
+ .premium-voice-track{height:210vh}
  .fb-voice-sticky{top:72px;height:calc(100svh - 72px);min-height:620px}
  .premium-voice-titles{height:82px}
  .premium-voice-titles>h2{font-size:clamp(40px,12vw,62px)}
