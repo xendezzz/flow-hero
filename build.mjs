@@ -10,6 +10,5 @@ js=js.replace('"wispr-ribbon")})','"focused-bold")})');
 js=js.replaceAll('start 144px','start 88px');
 await writeFile('dist/assets/site.js',js);
 await writeFile('dist/assets/site.css',(await readFile('src/original.css','utf8'))+'\n'+await readFile('src/theme.css','utf8'));
-await writeFile('dist/assets/dither.js',await readFile('src/dither.js','utf8'));
 await writeFile('dist/assets/hero-video.json',await readFile('src/hero-video.json','utf8'));
 console.log('Built full Flow site with original content and motion.');
