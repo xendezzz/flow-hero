@@ -10,7 +10,6 @@ js=js.slice(0,ivStart)+voiceEnhancements+'\n'+js.slice(ivEnd);
 const a=js.indexOf('function cA(){'),b=js.indexOf('function uA(',a);
 let hero=js.slice(a,b);
 hero=hero.replace('const t=M.useRef(null)','const t=M.useRef(null)');
-hero=hero.replace('className:"ed-hero-copy",children:[o.jsxs("h1"','className:"ed-hero-copy",children:[o.jsxs(K.div,{className:"flow-brand-chip",initial:s?!1:{opacity:0,y:8},animate:{opacity:1,y:0},transition:{duration:.5},children:[o.jsx("img",{src:"/assets/logo.svg",alt:""}),o.jsx("span",{children:"Flow by Runable"})]}),o.jsxs("h1"');
 hero=hero.replace('children:"Start talking."','children:o.jsx(FlowHeadline,{})');
 hero=hero.replace('o.jsxs(K.div,{className:"fb-hero-fragment fb-hero-fragment-left"','o.jsxs(K.a,{href:"#dictation-demo",className:"fb-hero-fragment fb-hero-fragment-left"');
 hero=hero.replace('transition:{delay:.9},"aria-hidden":"true",children:','transition:{delay:.9},"aria-label":"Hear how Flow cleans up speech",children:');
