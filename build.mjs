@@ -25,6 +25,7 @@ js=js.replace('initial:t?!1:{y:-35,rotate:-12},whileInView:{y:0,rotate:-7},viewp
 js=js.replace('"wispr-ribbon")})','"focused-bold")})');
 js=js.replaceAll('start 144px','start 88px');
 js=js.replace('children:["Compare plans",o.jsx(Ft,{size:15})]','children:["View plans",o.jsx(Ft,{size:15})]');
+js=js.replace(',!1,o.jsx(aN,{})]})',',!1]})');
 await writeFile('dist/assets/site.js',js);
 await writeFile('dist/assets/site.css',(await readFile('src/original.css','utf8'))+'\n'+await readFile('src/theme.css','utf8'));
 await writeFile('dist/assets/hero-video.json',await readFile('src/hero-video.json','utf8'));
